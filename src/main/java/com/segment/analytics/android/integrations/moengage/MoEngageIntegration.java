@@ -59,7 +59,10 @@ public class MoEngageIntegration extends Integration<MoEHelper> {
 
   MoEngageIntegration(Analytics analytics, ValueMap settings) throws IllegalStateException {
     Context context = analytics.getApplication();
+    String apiKey = settings.getString("apiKey");
+    String pushSenderId = settings.getString("pushSenderId");
     helper = MoEHelper.getInstance(context);
+    helper.initialize(pushSenderId, apiKey);
   }
 
   @Override public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
