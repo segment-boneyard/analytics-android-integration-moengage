@@ -34,6 +34,7 @@ import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import static com.segment.analytics.Utils.createContext;
@@ -41,6 +42,7 @@ import static com.segment.analytics.Utils.createTraits;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -71,14 +73,17 @@ import static org.powermock.api.mockito.PowerMockito.verifyNoMoreInteractions;
     when(context.getPackageManager()).thenReturn(manager);
     when(activity.getPackageManager()).thenReturn(manager);
     when(manager.getApplicationInfo(context.getPackageName(), 0)).thenReturn(applicationInfo);
+    when(context.getApplicationContext()).thenReturn(RuntimeEnvironment.application);
 
-    integration = new MoEngageIntegration(analytics, new ValueMap());
+    integration = new MoEngageIntegration(analytics, new ValueMap().putValue("pushSenderId", "12324441").putValue("apiKey", "ASJKSLJAL"));
     integration.helper = moeHelper;
   }
 
   @Test public void initialize() {
-    MoEngageIntegration integration = new MoEngageIntegration(analytics, new ValueMap());
+    MoEngageIntegration integration = new MoEngageIntegration(analytics, new ValueMap().putValue("pushSenderId", "12324441").putValue("apiKey", "ASJKSLJAL"));
     assertThat(integration.helper).isNotNull();
+    moeHelper.initialize("12324441", "ASJKSLJAL");
+    verify(moeHelper, times(1)).initialize("12324441", "ASJKSLJAL");
     verifyNoMoreInteractions(MoEHelper.class);
     verifyNoMoreInteractions(moeHelper);
   }
