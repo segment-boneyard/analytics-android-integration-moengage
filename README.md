@@ -6,6 +6,22 @@ analytics-android-integration-moengage
 
 MoEngage integration for [analytics-android](https://github.com/segmentio/analytics-android).
 
+## Installation
+
+For Gradle users:
+
+`compile 'com.moengage:moengage-segment-integration:+'`
+
+## Usage
+
+Analytics object should be initialized specifying that the MoEngage should be user.
+
+```
+analytics = new Analytics.Builder(this, "write_key")
+                .use(MoEngageIntegration.FACTORY)
+                .build();
+```
+
 ## License
 
 ```
