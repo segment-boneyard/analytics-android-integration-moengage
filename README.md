@@ -8,7 +8,7 @@ MoEngage integration for [analytics-android](https://github.com/segmentio/analyt
 
 ## Installation
 
-For Gradle users:
+In your gradle file add:
 
 `compile 'com.moengage:moengage-segment-integration:+'`
 
