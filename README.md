@@ -6,6 +6,32 @@ analytics-android-integration-moengage
 
 MoEngage integration for [analytics-android](https://github.com/segmentio/analytics-android).
 
+## Installation
+
+To install the Segment-MoEngage integration, simply add this line to your gradle file:
+
+`compile 'com.moengage:moengage-segment-integration:+'`
+
+## Usage
+
+After adding the dependency, you must register the integration with our SDK.  To do this, import the MoEngage integration:
+
+
+```
+import com.segment.analytics.android.integrations.moengage.MoEngageIntegration;
+
+```
+
+And add the following line:
+
+```
+analytics = new Analytics.Builder(this, "write_key")
+                .use(MoEngageIntegration.FACTORY)
+                .build();
+```
+
+Please see [our documentation](https://segment.com/docs/integrations/moengage/#android) for more information.
+
 ## License
 
 ```
