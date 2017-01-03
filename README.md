@@ -30,6 +30,8 @@ analytics = new Analytics.Builder(this, "write_key")
                 .build();
 ```
 
+Please see [our documentation](https://segment.com/docs/integrations/moengage/#android) for more information.
+
 ## License
 
 ```
